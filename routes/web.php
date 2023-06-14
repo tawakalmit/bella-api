@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FeaturesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
+
+Route::get('/', [DashboardController::class, 'getDashboard']);
+
+Route::get('/features', [DashboardController::class, 'getFeatures']);
+Route::post('/features', [DashboardController::class, 'postFeatures']);
+Route::get('/features/{id}/edit', [DashboardController::class, 'editFeatures']);
+Route::post('/features/{id}/update', [DashboardController::class, 'updateFeatures']);
+Route::delete('/features/{id}/delete', [DashboardController::class, 'deleteFeatures']);
+
+Route::get('/home_banner_tables', [DashboardController::class, 'getBanner']);
+Route::post('/home_banner_tables', [DashboardController::class, 'postBanner']);
+Route::delete('/home_banner_tables/{id}/delete', [DashboardController::class, 'deleteHomeBanner']);
+Route::get('/home_banner_tables/{id}/edit', [DashboardController::class, 'editBanner']);
+Route::post('/home_banner_tables/{id}/update', [DashboardController::class, 'updateHomeBanner']);
+
+Route::get('/new_arrival', [DashboardController::class, 'getNewArrival']);
+Route::post('/new_arrival', [DashboardController::class, 'postNewArrival']);
+Route::delete('/new_arrival/{id}/delete', [DashboardController::class, 'deleteNewArrival']);
+Route::get('/new_arrival/{id}/edit', [DashboardController::class, 'editNewArrival']);
+Route::post('/new_arrival/{id}/update', [DashboardController::class, 'updateNewArrival']);
+
+Route::get('/product_category', [DashboardController::class, 'getProductCategory']);
+Route::post('/product_category', [DashboardController::class, 'postProductCategory']);
+Route::delete('/product_category/{id}/delete', [DashboardController::class, 'deleteProductCategory']);
+Route::get('/product_category/{id}/edit', [DashboardController::class, 'editProductCategory']);
+Route::post('/product_category/{id}/update', [DashboardController::class, 'updateProductCategory']);

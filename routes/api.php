@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeBannerController;
+use App\Http\Controllers\AllTablesController;
+use App\Http\Controllers\FeaturesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('homebanner', [HomeBannerController::class, 'getHomeBanner']);
+Route::get('alltables', [AllTablesController::class, 'alltables']);
+Route::get('features', [FeaturesController::class, 'getFeatures']);

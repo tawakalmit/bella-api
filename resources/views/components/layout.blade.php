@@ -18,8 +18,17 @@
         </style>
     </head>
     <body class="antialiased">
-        <h1 class="text-3xl font-bold underline text-red-500">
-            Hello world!
-          </h1>
+        <x-navigation></x-navigation>
+        <div class="flex justify-start">
+            <x-sidebar>
+                <x-slot name="list">
+                    @foreach ($menu as $item)
+                    <a href="{{$item}}">{{$item}}</a>
+                    @endforeach
+                </x-slot>
+            </x-sidebar>
+            <x-table></x-table>
+        </div>
+        {{$fill}}
     </body>
 </html>
