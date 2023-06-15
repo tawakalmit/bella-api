@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
+        <script src="https://cdn.tiny.cloud/1/ljdfuwpogal2ivldra5hf5tg9p8ciwibbmywkdgsubc0binh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
         <title>Bella API</title>
 
@@ -22,9 +23,11 @@
         <div class="flex justify-start">
             <x-sidebar>
                 <x-slot name="list">
+                    <ul class="flex flex-col gap-3">
                     @foreach ($menu as $item)
-                    <a href="{{$item}}">{{$item}}</a>
+                    <li><a href="{{$item}}" class="capitalize hover:text-blue-500">{{$item}}</a></li>
                     @endforeach
+                    </ul>
                 </x-slot>
             </x-sidebar>
             <div class="w-full p-10">
@@ -32,6 +35,19 @@
             </div>
         </div>
         
+        <script>
+            tinymce.init({
+              selector: 'textarea',
+              plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+              toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+              tinycomments_mode: 'embedded',
+              tinycomments_author: 'Author name',
+              mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+              ]
+            });
+        </script>
         @yield('script')
     </body>
 </html>

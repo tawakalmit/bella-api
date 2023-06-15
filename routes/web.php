@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeaturesController;
+use App\Http\Controllers\TestimonyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,15 @@ Route::post('/product_category', [DashboardController::class, 'postProductCatego
 Route::delete('/product_category/{id}/delete', [DashboardController::class, 'deleteProductCategory']);
 Route::get('/product_category/{id}/edit', [DashboardController::class, 'editProductCategory']);
 Route::post('/product_category/{id}/update', [DashboardController::class, 'updateProductCategory']);
+
+Route::get('/products', [DashboardController::class, 'getProducts']);
+Route::post('/products', [DashboardController::class, 'postProducts']);
+Route::delete('/products/{id}/delete', [DashboardController::class, 'deleteProducts']);
+Route::get('/products/{id}/edit', [DashboardController::class, 'editProducts']);
+Route::post('/products/{id}/update', [DashboardController::class, 'updateProducts']);
+
+Route::get('/testimonies', [TestimonyController::class, 'index']);
+Route::post('/testimonies', [TestimonyController::class, 'create']);
+Route::delete('/testimonies/{id}/delete', [TestimonyController::class, 'destroy']);
+Route::get('/testimonies/{id}/edit', [TestimonyController::class, 'edit']);
+Route::post('/testimonies/{id}/update', [TestimonyController::class, 'update']);

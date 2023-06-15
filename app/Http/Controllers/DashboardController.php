@@ -8,6 +8,7 @@ use App\Models\Features;
 use App\Models\HomeBanner;
 use App\Models\NewArrival;
 use App\Models\ProductCategory;
+use App\Models\Products;
 use Illuminate\Support\Facades\File; 
 
 class DashboardController extends Controller
@@ -228,4 +229,68 @@ class DashboardController extends Controller
 
         return redirect('/product_category')->with('status', 'Data succesfully updated !');
     }
+
+    public function getProducts () {
+        
+        $products = Products::with('productcategory')->get();
+        $menu = $this->getMenu();
+        return view('products', compact('products', 'menu'));
+    }
+
+    public function postProducts (Request $request) {
+        $products = new Products;
+        $products->product_category_id = $request->product_category_id;
+        $products->title = $request->title;
+        $products->cover = $request->cover;
+        $products->layers = $request->layers;
+        $products->spring = $request->spring;
+        $products->height = $request->height;
+        $products->headboard = $request->headboard;
+        $products->ukuran = $request->ukuran;
+        $file = $request->file('image_product');
+        $filename = $file->getClientOriginalName();
+        $file->storeAs('image_product', $filename);
+        $products->image_product = $filename;
+        $products->save();
+        return redirect('/products')->with('status', 'Data succesfully added !');
+    }
+
+    public function deleteProducts ($id) {
+        $products = Products::find($id);
+        File::delete(public_path('/storage/image_product/'. $products->image_product));
+        $products->delete();
+        return redirect('/products')->with('status', 'Data succesfully deleted !');
+    }
+
+    public function editProducts ($id) {
+        $products = Products::find($id);
+        $menu = $this->getMenu();
+        return view('products_edit', compact('products','menu'));
+    }
+
+    public function updateProducts (Request $request, $id) {
+        $products = Products::find($id);
+
+        if($request->product_category_id){$products->product_category_id = $request->product_category_id;}
+        if($request->title){$products->title = $request->title;}
+        if($request->cover){$products->cover = $request->cover;}
+        if($request->layers){$products->layers = $request->layers;}
+        if($request->spring){$products->spring = $request->spring;}
+        if($request->height){$products->height = $request->height;}
+        if($request->headboard){$products->headboard = $request->headboard;}
+        if($request->ukuran){$products->ukuran = $request->ukuran;}
+        
+        if($request->file('image_product')){
+            File::delete(public_path('/storage/image_product/'. $products->image_product));
+            $file = $request->file('image_product');
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('image_product', $filename);
+            $products->image_product = $request->file('image_product')->getClientOriginalName();
+        }
+
+        $products->save();
+
+        return redirect('/products')->with('status', 'Data succesfully updated !');
+    }
+
  }
