@@ -141,6 +141,11 @@ class DashboardController extends Controller
         return view('new_arrival', compact('newArrival', 'menu'));
     }
 
+    public function newArrivalApi () {
+        $newArrival = NewArrival::get();
+        return $newArrival;
+    }
+
     public function postNewArrival (Request $request) {
         $newArrival = new NewArrival;
         $file = $request->file('image');
@@ -184,6 +189,11 @@ class DashboardController extends Controller
         $productCategory = ProductCategory::get();
         $menu = $this->getMenu();
         return view('/product_category', compact('productCategory', 'menu'));
+    }
+
+    public function getProductCategoryApi () {
+        $productCategory = ProductCategory::get();
+        return $productCategory;
     }
 
     public function postProductCategory (Request $request) {
@@ -231,10 +241,14 @@ class DashboardController extends Controller
     }
 
     public function getProducts () {
-        
         $products = Products::with('productcategory')->get();
         $menu = $this->getMenu();
         return view('products', compact('products', 'menu'));
+    }
+
+    public function getProductsApi () {
+        $products = Products::with('productcategory')->get();
+        return $products;
     }
 
     public function postProducts (Request $request) {
