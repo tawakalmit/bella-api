@@ -34,6 +34,12 @@ class PostController extends Controller
         return view('post',compact('post','menu'));
     }
 
+    public function getPostsApi()
+    {
+        $post = Post::get();
+        return $post;
+    }
+
     /**
      * Show the form for creating a new resource.
      */

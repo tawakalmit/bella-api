@@ -34,6 +34,12 @@ class TestimonyController extends Controller
         return view('testimony', compact('testimony','menu'));
     }
 
+    public function getTestimonies()
+    {
+        $testimony = Testimony::get();
+        return $testimony;
+    }
+
     /**
      * Show the form for creating a new resource.
      */
