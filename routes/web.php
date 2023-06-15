@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\TestimonyController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,9 @@ Route::post('/testimonies', [TestimonyController::class, 'create']);
 Route::delete('/testimonies/{id}/delete', [TestimonyController::class, 'destroy']);
 Route::get('/testimonies/{id}/edit', [TestimonyController::class, 'edit']);
 Route::post('/testimonies/{id}/update', [TestimonyController::class, 'update']);
+
+Route::get('/posts', [PostController::class, 'index']);
+Route::post('/posts', [PostController::class, 'create']);
+Route::delete('/posts/{id}/delete', [PostController::class, 'destroy']);
+Route::get('/posts/{id}/edit', [PostController::class, 'edit']);
+Route::post('/posts/{id}/update', [PostController::class, 'update']);
