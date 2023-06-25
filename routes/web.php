@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\HelloMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeaturesController;
@@ -64,3 +66,8 @@ Route::post('/posts', [PostController::class, 'create']);
 Route::delete('/posts/{id}/delete', [PostController::class, 'destroy']);
 Route::get('/posts/{id}/edit', [PostController::class, 'edit']);
 Route::post('/posts/{id}/update', [PostController::class, 'update']);
+
+// Route::get('/sendmail', function () {
+//     Mail::to('iqscenix@gmail.com')
+//     ->send(new HelloMail());
+// });

@@ -8,6 +8,7 @@ use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TestimonyController;
+use App\Http\Controllers\SendMailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,5 @@ Route::get('posts', [PostController::class, 'getPostsApi']);
 Route::get('product_category', [DashboardController::class, 'getProductCategoryApi']);
 Route::get('products', [DashboardController::class, 'getProductsApi']);
 Route::get('testimony', [TestimonyController::class, 'getTestimonies']);
+
+Route::post('sendmail', [SendMailController::class, 'postmail']);
